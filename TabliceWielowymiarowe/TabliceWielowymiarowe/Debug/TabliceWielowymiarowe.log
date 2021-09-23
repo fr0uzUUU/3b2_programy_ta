@@ -1,0 +1,4 @@
+﻿  TabliceWielowymiarowe.cpp
+F:\GitHub_Michala\TabliceWielowymiarowe\TabliceWielowymiarowe\TabliceWielowymiarowe.cpp(10,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+F:\GitHub_Michala\TabliceWielowymiarowe\TabliceWielowymiarowe\TabliceWielowymiarowe.cpp(37,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+  TabliceWielowymiarowe.vcxproj -> F:\GitHub_Michala\TabliceWielowymiarowe\Debug\TabliceWielowymiarowe.exe
