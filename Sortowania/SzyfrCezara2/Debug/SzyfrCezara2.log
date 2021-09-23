@@ -1,0 +1,4 @@
+﻿  SzyfrCezara2.cpp
+F:\prace C++\Sortowania\SzyfrCezara2\SzyfrCezara2.cpp(10,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+F:\prace C++\Sortowania\SzyfrCezara2\SzyfrCezara2.cpp(24,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+  SzyfrCezara2.vcxproj -> F:\prace C++\Sortowania\Debug\SzyfrCezara2.exe

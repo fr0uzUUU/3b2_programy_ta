@@ -1,0 +1,3 @@
+﻿  CoDrugi.cpp
+F:\prace C++\Wskazniki\CoDrugi\CoDrugi.cpp(8,15): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+  CoDrugi.vcxproj -> F:\prace C++\Wskazniki\Debug\CoDrugi.exe

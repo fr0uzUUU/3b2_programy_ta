@@ -1,0 +1,6 @@
+﻿  GotoweFunkcje.cpp
+F:\prace C++\Sortowania\GotoweFunkcje\GotoweFunkcje.cpp(14,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+F:\prace C++\Sortowania\GotoweFunkcje\GotoweFunkcje.cpp(12,6): warning C4101: "i": lokalna zmienna, do której nie istnieje odwołanie
+F:\prace C++\Sortowania\GotoweFunkcje\GotoweFunkcje.cpp(114,15): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+F:\prace C++\Sortowania\GotoweFunkcje\GotoweFunkcje.cpp(112,14): warning C4101: "licznik": lokalna zmienna, do której nie istnieje odwołanie
+  GotoweFunkcje.vcxproj -> F:\prace C++\Sortowania\Debug\GotoweFunkcje.exe
