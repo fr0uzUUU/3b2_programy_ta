@@ -2,10 +2,95 @@
 #include <vector>
 using namespace std;
 
+bool sprawdz(int x, int y, int z, int plansza[7][7], int a){
+	bool ok = true;
+	if (z == 1) //poziomo
+	{
+		if (x > 6 - a)
+		{
+			ok = false;
+		}
+		else
+		{
+			for (int i = x; i < x + a; i++)
+			{
+				if (plansza[i][y] != 0)
+				{
+					ok = false;
+				}
+			}
+		}
+	}
+	else if (z == 0)
+	{
+		if (y > 6 - a)
+		{
+			ok = false;
+		}
+		else
+		{
+			for (int i = y; i < y + a; i++)
+			{
+				if (plansza[x][i] != 0)
+				{
+					ok = false;
+				}
+			}
+		}
+	}
+	return ok;
+}
+
+void wstaw(int x, int y, int z, int plansza[7][7], vector <int> statki[3], int a) {
+	int id;
+	id = statki[2][statki->size() - 1];
+	id++;
+	if (z == 1) // poziomo
+	{
+		for (int i = x; i < x + a; i++)
+		{
+			for (int k = i - 1; k < i + 1; k++)
+			{
+				for (int l = y - 1; l <= y + 1; l++)
+				{
+					plansza[k][l] = 9;
+				}
+			}
+		}
+		for (int i = x; i < x + a; i++)
+		{
+			statki[0].push_back(i); // x
+			statki[1].push_back(y); // y
+			statki[2].push_back(id); // numer statku
+			plansza[i][y] = a;
+		}
+	}
+	else // pionowo
+	{
+		for (int i = y; i < y + a; i++)
+		{
+			for (int k = i - 1; k < i + 1; k++)
+			{
+				for (int l = x - 1; l <= x + 1; l++)
+				{
+					plansza[l][k] = 9;
+				}
+			}
+		}
+		for (int i = y; i < y + a; i++)
+		{
+			statki[0].push_back(x); // x
+			statki[1].push_back(i); // y
+			statki[2].push_back(id); // numer statku
+			plansza[x][i] = a;
+		}
+	}
+}
+
 int main()
 {
 	const int np = 7;
-    int plansza1[np][np], x, y, z, id;
+    int plansza1[np][np], x, y, z;
     vector <int> statki1[3];
 	bool ok = false;
 
@@ -20,71 +105,27 @@ int main()
 	{
 		statki1[i].push_back(0);
 	}
-	while (ok == false)
+	for(int m = 3; m >= 0; m--)
 	{
-		ok = true;
-		cout << "Podaj wspolrzedne 3-masztowca: ";
-		cin >> x >> y >> z;
-		if (z == 1) //poziomo
+		int b;
+		if (m == 0)
 		{
-			if (x > 3)
-			{
-				ok = false;
-			}
-			else
-			{
-				for (int i = x; i < x + 3; i++)
-				{
-					if (plansza1[i][y] != 0)
-					{
-						ok = false;
-					}
-				}
-			}
+			b = 1;
 		}
-		else if (z == 0)
+		else
 		{
-			if (y > 3)
-			{
-				ok = false;
-			}
-			else
-			{
-				for (int i = y; i < y + 3; i++)
-				{
-					if (plansza1[x][i] != 0)
-					{
-						ok = false;
-					}
-				}
-			}
+			b = m;
 		}
+		ok = false;
+		while (ok == false)
+		{
+			cout << "Podaj wspolrzedne " << b << " - masztowca: ";
+			cin >> x >> y >> z;
+			ok = sprawdz(x, y, z, plansza1, b);
+		}
+		wstaw(x, y, z, plansza1, statki1, b);
 	}
-	if (ok)
-	{
-		id = statki1[2][statki1->size() - 1];
-		id++;
-		if (z == 1) // poziomo
-		{
-			for (int i = x; i < x + 3; i++)
-			{
-				statki1[0].push_back(i); // x
-				statki1[1].push_back(y); // y
-				statki1[2].push_back(id); // numer statku
-				plansza1[i][y] = 3;
-			}
-		}
-		else // pionowo
-		{
-			for (int i = y; i <  y + 3; i++)
-			{
-				statki1[0].push_back(x); // x
-				statki1[1].push_back(i); // y
-				statki1[2].push_back(id); // numer statku
-				plansza1[x][i] = 3;
-			}
-		}
-	}
+	
 	for (int i = 0; i < np; i++)
 	{
 		for (int j = 0; j < np; j++)
