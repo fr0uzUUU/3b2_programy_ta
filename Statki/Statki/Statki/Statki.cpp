@@ -55,17 +55,63 @@ void wstaw(int x, int y, int z, int plansza[7][7], vector <int> statki[3], int a
     }
 }
 
+int strzal(int x, int y, int plansza[7][7], vector <int> statki[3]) {
+    int id;
+    int z;
+    if ((plansza[x][y] > 0) && (plansza[x][y]))
+    {
+        if (plansza[x][y] == 1) // zatopiony
+        {
+            plansza[x][y] = 0;
+            z = 2;
+        }
+        else
+        {
+            plansza[x][y] = 0;
+            for (int i = 1; i < statki[2].size(); i++)
+            {
+                if ((statki[0][i] == x) && (statki[1][i] == y))
+                {
+                    id = statki[2][i];
+                    statki[2][i] = 0;  
+                }
+            }
+            for (int i = 1; i < statki[2].size(); i++)
+            {
+                if (statki[2][i] == id)
+                {
+                    plansza[statki[0][i]][statki[1][i]]--;
+                }
+            }
+            z = 1;
+        }
+    }
+    else
+    {
+        z = 0;
+    }
+    return z;
+}
+
 int main()
 {
     const int np = 7;
     int plansza1[np][np];
-    int x, y, z;
+    string plansza11[5][5];
+    int x, y, z, s, zat = 0;
     vector <int> statki1[3];
     bool ok;
 
     for (int i = 0; i < np; i++)
         for (int j = 0; j < np; j++)
             plansza1[i][j] = 0;
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < 5; j++)
+        {
+            plansza11[i][j] = '.';
+        }
+    }
     for (int i = 0; i < 3; i++) statki1[i].push_back(0);
 
     for (int m = 3; m >= 0; m--) {
@@ -80,15 +126,42 @@ int main()
         }
         wstaw(x, y, z, plansza1, statki1, b);
     }
-
-
-    for (int i = 0; i < np; i++) {
-        for (int j = 0; j < np; j++)
-            cout << plansza1[j][i] << " ";
-        cout << "\n";
+    while (zat < 4)
+    {
+        cout << "u: ";
+        cin >> x >> y;
+        s = strzal(x, y, plansza1, statki1);
+        if (s == 0)
+        {
+            plansza11[x - 1][y - 1] = 'O';
+        }
+        else
+        {
+            plansza11[x - 1][y - 1] = 'X';
+            if (s == 2)
+            {
+                zat++;
+            }
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                cout << plansza11[j][i] << " ";
+            }
+            cout << endl;
+        }
+        cout << "--------------------------------------------------\n";
     }
-    /*cout << statki1->size();*/
-    for (int i = 0; i < statki1->size(); i++)
-        cout << statki1[0][i] << " " << statki1[1][i] << " " << statki1[2][i] << endl;
+
+    //for (int i = 0; i < np; i++) {
+    //    for (int j = 0; j < np; j++)
+    //        cout << plansza1[j][i] << " ";
+    //    cout << "\n";
+    //}
+    //
+    ///*cout << statki1->size();*/
+    //for (int i = 0; i < statki1->size(); i++)
+    //    cout << statki1[0][i] << " " << statki1[1][i] << " " << statki1[2][i] << endl;
 }
 
