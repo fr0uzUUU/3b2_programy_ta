@@ -1,102 +1,140 @@
-﻿#include <iostream>
-#include <time.h>
-#include <algorithm>
+#include <iostream>
 #include <stdlib.h>
+#include <time.h>
+
 using namespace std;
 
-void sortowanie1(){
-	int tab[5];
-	int licznik;
-	int n = 5;
-	int powto = 1;
-	int i;
-	bool posortowane = false;
-	srand(time(NULL));
+// QUICKSORT sami w domu
+void QuickSort(int tab[], int l, int p);
+void SortowanieShella(int tab[], int n);
+void SortowaniePrzezWstawianie(int tab[], int n);
+void SortowaniePrzezWybor(int tab[], int n);
+void SortowanieNaiwne(int tab[], int n);
+void BogoSort(int tab[], int n);
+bool CzyPosortowane(int tab[], int n);
 
-	while (posortowane == false)
-	{
-		cout << powto << endl;
-		licznik = 0;
-		for (int i = 0; i < n - 1; i++)
+void BubbleSort(int tab[], int n) {
+	do {
+		for (int i = 0; i < n-1; i++)
 		{
-			if (tab[i] <= tab[i + 1])
+			if (tab[i] > tab[i+1])
 			{
-				licznik++;
+				swap(tab[i], tab[i + 1]);
 			}
 		}
-		if (licznik == n - 1)
-		{
-			posortowane = true;
-		}
-		if (posortowane == false)
-		{
-			for (int i = 0; i < n - 1; i++)
-			{
-				swap(tab[rand() % n], tab[rand() % n]);
-			}
-		}
-		powto++;
-	}
+		n--;
+	} while (n > 1);
 }
 
-void sortownie2() {
-	int tab[5];
-	int i = 0;
-	int n = 5;
-	while (i != n - 1)
-	{
-		cout << " * \n";
-		if (tab[i] > tab[i + 1])
-		{
-			swap(tab[i], tab[i + 1]);
-			i = 0;
-		}
-		else
-		{
-			i++;
-		}
-	}
+int main() {
+	//Do losowania
+	srand(time(NULL));
+	//Ilosc miejsc w tablicy
+	const int n = 10;
+	//Tworzenie tablicy
+	int tab[n];
 	for (int i = 0; i < n; i++)
 	{
-		cout << tab[i] << " ";
+		tab[i] = rand() % 1000;
+		//Wypisywanie tablicy
+		if (i < n - 1) {
+			cout << tab[i] << " : ";
+		}
+		else {
+			cout << tab[i];
+		}
 	}
+	cout << endl;
+	cout << endl;
+
+	//BogoSort(tab, n);	//Zwariowane
+	//SortowanieNaiwne(tab, n);
+	//SortowaniePrzezWybor(tab, n);
+	SortowaniePrzezWstawianie(tab, n);
+	//SortowanieShella(tab, n);
+	//QuickSort(tab, 0, n-1);
+	//BubbleSort(tab, n);
+
+	//Wypisywanie tablicy
+	cout << endl;
+	cout << endl;
+	for (int i = 0; i < n; i++)
+	{
+		if (i < n - 1) {
+			cout << tab[i] << " : ";
+		}
+		else {
+			cout << tab[i];
+		}
+	}
+	cout << "\n\nCzy posortowane: " << CzyPosortowane(tab, n);
+	return 0;
 }
 
-void sortownie3() {
-	int tab[5];
-	int i = 0;
-	int n = 5;
-	int min;
-	int p;
-	while (i != n - 1)
+void QuickSort(int tab[], int l, int p) {
+	if (p <= l)	return;
+
+	int i = l - 1;
+	int j = p + 1;
+
+	int pivot = tab[(l+p) / 2];
+	bool czyPetla = true;
+	while (czyPetla)
 	{
-		cout << " * \n";
-		min = n;
-		for (int j = i; j < n; j++)
+
+		while (pivot > tab[++i]);
+
+
+		while (pivot < tab[--j]);
+
+
+		if (i <= j)
+			swap(tab[i], tab[j]);
+		else
+			czyPetla = false;
+	}
+
+	if (j > l)
+		QuickSort(tab, l, j);
+	if (i < p)
+		QuickSort(tab, i, p);
+}
+
+void SortowanieShella(int tab[], int n) {
+	int j, k, ile, tempTab[1000];
+	for (int h = n / 2; h > 1; h--)
+	{
+		for (int i = 0; i < h; i++)
 		{
-			if (tab[j] < min)
-			{
-				min = tab[j];
-				p = j;
+			j = i;
+			k = 0;
+			ile = 0;
+			while (j < n) {
+				tempTab[k++] = tab[j];
+				ile++;
+				j += h;
+			}
+
+			SortowaniePrzezWstawianie(tempTab, ile);
+
+			j = i;
+			k = 0;
+			while (j < n) {
+				tab[j] = tempTab[k++];
+				j += h;
 			}
 		}
-		swap(tab[i], tab[p]);
-		i++;
 	}
+	SortowaniePrzezWstawianie(tab, n);
 }
 
-void sortownie4() {
-	int tab[5];
-	int i = 0;
-	int n = 5;
-	int j = 1;
-	int k;
-	while (j <= n)
-	{
+void SortowaniePrzezWstawianie(int tab[], int n) {
+
+	int j = 1, k;
+	while (j <= n-1) {
 		k = j;
-		while (k >= 1)
-		{
-			if (tab[k - 1] < tab[k])
+		while (k >= 1) {
+			if (tab[k - 1] > tab[k])
 			{
 				swap(tab[k - 1], tab[k]);
 				k--;
@@ -107,21 +145,67 @@ void sortownie4() {
 	}
 }
 
-int main()
-{
-	int tab[5], licznik, n = 5, powto = 1;
-	bool posortowane = false;
-    srand(time(NULL));
-    for (int i = 0; i < n; i++)
-    {
-        tab[i] = rand() % 100;
-    }
-	cout << "Sortwanie :\n";
-	void sortowanie1();
-	cout << "Sortwanie :\n";
-	void sortowanie2();
-	cout << "Sortwanie :\n";
-	void sortowanie3();
-	cout << "Sortwanie :\n";
-	void sortowanie4();
+void SortowaniePrzezWybor(int tab[], int n) {
+	int index = 0;
+	while (index != n) {
+		int liczba = 0;
+		int min = 1000;
+		for (int i = index; i < n; i++)
+		{
+			if (tab[i] < min)
+			{
+				min = tab[i];
+				liczba = i;
+			}
+		}
+		swap(tab[index], tab[liczba]);
+		index++;
+	}
+}
+
+void SortowanieNaiwne(int tab[], int n) {
+	int i = 0;
+	while (i != n - 1) {
+		if (tab[i] > tab[i + 1]) {
+			swap(tab[i], tab[i + 1]);
+			i = 0;
+		}
+		else {
+			i++;
+		}
+	}
+}
+
+//	BogoSort() jest połączony z CzyPosortowane()
+void BogoSort(int tab[], int n) {
+	int licznik = 0;
+	while (!CzyPosortowane(tab, n))
+	{
+		licznik++;
+		for (int i = 0; i < n - 1; i++)
+		{
+			swap(tab[rand() % n], tab[rand() % n]);
+		}
+	}
+	cout << endl << endl;
+	for (int i = 0; i < n; i++)
+	{
+		if (i < n - 1) {
+			cout << tab[i] << " : ";
+		}
+		else {
+			cout << tab[i];
+		}
+	}
+	cout << "\nUdalo sie za " << licznik << " razem";
+}
+
+bool CzyPosortowane(int tab[], int n) {
+	for (int i = 0; i < n - 1; i++)
+	{
+		if (tab[i] <= tab[i + 1]) {}
+		else
+			return false;
+	}
+	return true;
 }
