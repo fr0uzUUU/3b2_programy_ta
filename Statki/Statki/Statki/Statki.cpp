@@ -97,7 +97,7 @@ int main()
 {
     srand(time(NULL));
     const int np = 7;
-    int plansza1[np][np], plansza2[np][np], komp[25][2];
+    int plansza1[np][np], plansza2[np][np], komp[25][2], temp[3][2] = { 0 };
     string plansza11[5][5];
     int x, y, z, s, zat = 0, zatk = 0, licznik = 0, kom;
     vector <int> statki1[3], statki2[3];
@@ -148,7 +148,7 @@ int main()
         wstaw(x, y, z, plansza2, statki2, b);
     }
 
-    while ((zat < 4) || (zatk < 4)) {
+    while ((zat < 4) && (zatk < 4)) {
         if (kol) {
             cout << "u: ";
             cin >> x >> y;
@@ -156,10 +156,15 @@ int main()
             if (s == 0) {
                 plansza11[x - 1][y - 1] = 'O';
                 kol = false;
+                cout << "pudlo\n";
             }
             else {
                 plansza11[x - 1][y - 1] = 'X';
-                if (s == 2) zat++;
+                if (s == 2) {
+                    zat++;
+                    cout << "zatopiony\n";
+                }
+                else cout << "trafiony\n";
                 kol = true;
             }
             for (int i = 0; i < 5; i++) {
@@ -170,10 +175,28 @@ int main()
             cout << "-------------------------------------------------------------------------\n";
         }
         else {
-            kom = rand() % licznik;
-            int xx, yy;
-            xx = komp[kom][0];
-            yy = komp[kom][1];
+            int xx, yy, t, licz = 0, trafienie = 0, traf[4][2] = { 0 }, ll;
+            sortowanie_przez_wstawianie(traf, 4);
+            for (int i = 0; i < 4; i++) cout << traf[i][0] << " " << traf[i][1] << endl;
+            if (traf[0][0] == 0) {
+                kom = rand() % licznik;
+                xx = komp[kom][0];
+                yy = komp[kom][1];
+                komp[kom][0] = 0;
+                komp[kom][1] = 0;
+            }
+            else {
+                xx = traf[0][0];
+                yy = traf[0][1];
+                for (int m = 0; m < licznik; m++)
+                    if ((komp[m][0] == xx) && (komp[m][1] == yy)) {
+                        komp[m][0] = 0;
+                        komp[m][1] = 0;
+                        break;
+                    }
+                traf[0][0] = 0;
+                traf[0][1] = 0;
+            }
             cout << xx << " " << yy;
             s = strzal(xx, yy, plansza1, statki1);
             if (s == 0) {
@@ -183,16 +206,128 @@ int main()
             else if (s == 1) {
                 cout << " trafiony\n";
                 kol = false;
+                for (int i = 0; i < 3; i++) {
+                    if (temp[i][1] == 0) {
+                        temp[i][0] = xx;
+                        temp[i][1] = yy;
+                        t = i;
+                        trafienie++;
+                        break;
+                    }
+                }
+                if (trafienie == 1) {
+                    ll = 0;
+                    for (int i = xx - 1; i <= xx + 1; i + 2)
+                        for (int j = yy - 1; i <= yy + 1; j + 2)
+                            for (int m = 0; m < licznik; m++)
+                                if ((komp[m][0] == i) && (komp[m][1] == j)) {
+                                    traf[ll][0] = i;
+                                    traf[ll][1] = j;
+                                    ll++;
+                                    break;
+                                }
+                }
+                else {
+                    for (int i = 0; i < 3; i++) {
+                        traf[i][0] = 0;
+                        traf[i][1] = 0;
+                    }
+                    if (temp[0][0] != temp[1][0]) {
+                        if (temp[0][0] < temp[1][0]) {
+                            for (int m = 0; m < licznik; m++)
+                                if ((komp[m][0] == temp[0][0] - 1) && (komp[m][1] == temp[0][1])) {
+                                    traf[0][0] = temp[0][0] - 1;
+                                    traf[0][1] = temp[0][1];
+                                }
+                            for (int m = 0; m < licznik; m++)
+                                if ((komp[m][0] == temp[1][0] + 1) && (komp[m][1] == temp[1][1])) {
+                                    traf[1][0] = temp[1][0] + 1;
+                                    traf[1][1] = temp[1][1];
+                                }
+                        }
+                        else {
+                            for (int m = 0; m < licznik; m++)
+                                if ((komp[m][0] == temp[0][0] + 1) && (komp[m][1] == temp[0][1])) {
+                                    traf[0][0] = temp[0][0] + 1;
+                                    traf[0][1] = temp[0][1];
+                                }
+                            for (int m = 0; m < licznik; m++)
+                                if ((komp[m][0] == temp[1][0] - 1) && (komp[m][1] == temp[1][1])) {
+                                    traf[1][0] = temp[1][0] - 1;
+                                    traf[1][1] = temp[1][1];
+                                }
+                        }
+                    }
+                    else {
+                        if (temp[0][1] < temp[1][1]) {
+                            for (int m = 0; m < licznik; m++)
+                                if ((komp[m][0] == temp[0][0]) && (komp[m][1] == temp[0][1] - 1)) {
+                                    traf[0][0] = temp[0][0];
+                                    traf[0][1] = temp[0][1] - 1;
+                                }
+                            for (int m = 0; m < licznik; m++)
+                                if ((komp[m][0] == temp[1][0]) && (komp[m][1] == temp[1][1] + 1)) {
+                                    traf[1][0] = temp[1][0];
+                                    traf[1][1] = temp[1][1] + 1;
+                                }
+                        }
+                        else {
+                            for (int m = 0; m < licznik; m++)
+                                if ((komp[m][0] == temp[0][0]) && (komp[m][1] == temp[0][1] + 1)) {
+                                    traf[0][0] = temp[0][0];
+                                    traf[0][1] = temp[0][1] + 1;
+                                }
+                            for (int m = 0; m < licznik; m++)
+                                if ((komp[m][0] == temp[1][0]) && (komp[m][1] == temp[1][1] - 1)) {
+                                    traf[1][0] = temp[1][0];
+                                    traf[1][1] = temp[1][1] - 1;
+                                }
+                        }
+                    }
+                }
             }
             else if (s == 2) {
                 cout << " zatopiony\n";
                 kol = false;
                 zatk++;
+                licz = 0;
+                for (int i = 0; i < 3; i++) {
+                    if (temp[i][1] == 0) {
+                        temp[i][0] = xx;
+                        temp[i][1] = yy;
+                        t = i;
+                        break;
+                    }
+                }
+                for (int i = 0; i <= t; i++) {
+                    xx = temp[i][0];
+                    yy = temp[i][1];
+                    for (int k = xx - 1; k <= xx + 1; k++)
+                        for (int l = yy - 1; l <= yy + 1; l++)
+                            for (int m = 0; m < licznik; m++)
+                                if ((komp[m][0] == k) && (komp[m][1] == l)) {
+                                    komp[m][0] = 0;
+                                    komp[m][1] = 0;
+                                    licz++;
+                                    break;
+                                }
+                }
+                for (int i = 0; i < 3; i++) {
+                    temp[i][0] = 0;
+                    temp[i][1] = 0;
+                }
+                for (int i = 0; i < 4; i++) {
+                    traf[i][0] = 0;
+                    traf[i][1] = 0;
+                }
             }
-            komp[kom][0] = 0;
-            komp[kom][1] = 0;
             sortowanie_przez_wstawianie(komp, licznik);
-            licznik--;
+            if (licz != 0) {
+                licznik -= licz;
+                licz = 0;
+            }
+            else licznik--;
+            /*for (int i = 0; i < 25; i++) cout << komp[i][0] << " " << komp[i][1] << endl;*/
         }
     }
     if (zat == 4) cout << "wygral uzytkownik";
