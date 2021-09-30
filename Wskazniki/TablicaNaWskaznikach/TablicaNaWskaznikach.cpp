@@ -33,8 +33,8 @@ int main()
 
     for (int i = 0; i < 5; i++)
     {
-        *(wsk + i) = rand() % 10;;
-        cout << *(wsk + i);
+        *(wsk + i) = rand() % 10;
+        cout << *(wsk + i) << " ";
     }
     delete[] wsk;
 }
