@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿#include <iostream>
+=======
+#include <iostream>
+>>>>>>> 7411a443291a9102f22f80de4331bdb8f3a3a95b
 #include <stdlib.h>
 #include <time.h>
 
@@ -15,9 +19,15 @@ bool CzyPosortowane(int tab[], int n);
 
 void BubbleSort(int tab[], int n) {
 	do {
+<<<<<<< HEAD
 		for (int i = 0; i < n - 1; i++)
 		{
 			if (tab[i] > tab[i + 1])
+=======
+		for (int i = 0; i < n-1; i++)
+		{
+			if (tab[i] > tab[i+1])
+>>>>>>> 7411a443291a9102f22f80de4331bdb8f3a3a95b
 			{
 				swap(tab[i], tab[i + 1]);
 			}
@@ -77,7 +87,11 @@ void QuickSort(int tab[], int l, int p) {
 	int i = l - 1;
 	int j = p + 1;
 
+<<<<<<< HEAD
 	int pivot = tab[(l + p) / 2];
+=======
+	int pivot = tab[(l+p) / 2];
+>>>>>>> 7411a443291a9102f22f80de4331bdb8f3a3a95b
 	bool czyPetla = true;
 	while (czyPetla)
 	{
@@ -131,7 +145,11 @@ void SortowanieShella(int tab[], int n) {
 void SortowaniePrzezWstawianie(int tab[], int n) {
 
 	int j = 1, k;
+<<<<<<< HEAD
 	while (j <= n - 1) {
+=======
+	while (j <= n-1) {
+>>>>>>> 7411a443291a9102f22f80de4331bdb8f3a3a95b
 		k = j;
 		while (k >= 1) {
 			if (tab[k - 1] > tab[k])
@@ -161,6 +179,56 @@ void SortowaniePrzezWybor(int tab[], int n) {
 		swap(tab[index], tab[liczba]);
 		index++;
 	}
+<<<<<<< HEAD
+=======
+}
+
+void SortowanieNaiwne(int tab[], int n) {
+	int i = 0;
+	while (i != n - 1) {
+		if (tab[i] > tab[i + 1]) {
+			swap(tab[i], tab[i + 1]);
+			i = 0;
+		}
+		else {
+			i++;
+		}
+	}
+}
+
+//	BogoSort() jest połączony z CzyPosortowane()
+void BogoSort(int tab[], int n) {
+	int licznik = 0;
+	while (!CzyPosortowane(tab, n))
+	{
+		licznik++;
+		for (int i = 0; i < n - 1; i++)
+		{
+			swap(tab[rand() % n], tab[rand() % n]);
+		}
+	}
+	cout << endl << endl;
+	for (int i = 0; i < n; i++)
+	{
+		if (i < n - 1) {
+			cout << tab[i] << " : ";
+		}
+		else {
+			cout << tab[i];
+		}
+	}
+	cout << "\nUdalo sie za " << licznik << " razem";
+}
+
+bool CzyPosortowane(int tab[], int n) {
+	for (int i = 0; i < n - 1; i++)
+	{
+		if (tab[i] <= tab[i + 1]) {}
+		else
+			return false;
+	}
+	return true;
+>>>>>>> 7411a443291a9102f22f80de4331bdb8f3a3a95b
 }
 
 void SortowanieNaiwne(int tab[], int n) {

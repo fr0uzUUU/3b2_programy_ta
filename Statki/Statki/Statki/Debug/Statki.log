@@ -1,7 +1,6 @@
 ﻿  Statki.cpp
 F:\GitHub_Michala\Statki\Statki\Statki\Statki.cpp(69,31): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
 F:\GitHub_Michala\Statki\Statki\Statki\Statki.cpp(74,31): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-F:\GitHub_Michala\Statki\Statki\Statki\Statki.cpp(98,15): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
-F:\GitHub_Michala\Statki\Statki\Statki\Statki.cpp(214,57): warning C4552: „+”: Wynik wyrażenia nie jest używany
-F:\GitHub_Michala\Statki\Statki\Statki\Statki.cpp(215,61): warning C4552: „+”: Wynik wyrażenia nie jest używany
+F:\GitHub_Michala\Statki\Statki\Statki\Statki.cpp(109,15): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+F:\GitHub_Michala\Statki\Statki\Statki\Statki.cpp(105): warning C4715: "lista_trafien”: niewszystkie ścieżki kodu zwracają wartość
   Statki.vcxproj -> F:\GitHub_Michala\Statki\Statki\Debug\Statki.exe
