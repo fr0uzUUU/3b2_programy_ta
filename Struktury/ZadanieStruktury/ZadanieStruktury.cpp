@@ -28,7 +28,7 @@ Figura* pobierzDane(Figura* w_p) {
     return w_p;
 }
 
-void oblicz(const Figura* w_p) {
+void oblicz(const Figura* w_p, int a, int b, int h) {
     int obj;
     int pole = (2 * a * b) + (2 * a * h) + (2 * h * b);
     int dl = 4 * (a + b + h);
