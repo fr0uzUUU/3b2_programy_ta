@@ -13,9 +13,14 @@ private:
     bool m_Employed;
     Position m_position;
     Employer m_employer;
-}
+};
+
 class Position{
 public:
-}
+};
+
+class Employer{
+public:
+};
 
 #endif // MAIN_H

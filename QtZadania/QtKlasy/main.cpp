@@ -1,6 +1,7 @@
 #include <QTextStream>
 #include "QtKlasy.h"
 #include <iostream>
+using namespace std
 
 void display(Thing t, int n){
     int i;
