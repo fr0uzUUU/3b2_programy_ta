@@ -1,53 +1,71 @@
-﻿/*Klasy prostokat i prostopadloscian obliczanie pp,o na podstawie zmiennych prostokata */
-#include <iostream>
+﻿#include <iostream>
+
 using namespace std;
 
-class Prostokat {
-private:
-	int a, b;
-public:
-	Prostokat();
-	void pobierzBoki(int&, int&);
-};
-
-class Prostopadloscian {
-private:
-	int h = 5, obj, pp;
-public:
-	Prostopadloscian(int, int);
-	int objentosc();
-	int pole();
-};
-
-int main()
+class Prostokat
 {
-	int aa, bb;
-	Prostokat p1;
-	p1.pobierzBoki(aa, bb);
-	Prostopadloscian pp1(aa, bb);
-	cout << pp1.objentosc() << " " << pp1.pole() << endl;
-}
+private:
+    int a, b;
+public:
+    Prostokat();
+    void PobierzBoki(int&, int&);
+    void WyswietlDane();
+};
 
 Prostokat::Prostokat()
 {
-	cin >> a;
-	cin >> b;
+    cin >> a;
+    cin >> b;
 }
 
-void Prostokat::pobierzBoki(int&, int&)
+void Prostokat::PobierzBoki(int& pa, int& pb)
 {
+    pa = a;
+    pb = b;
 }
 
-Prostopadloscian::Prostopadloscian(int, int)
+void Prostokat::WyswietlDane()
 {
+    cout << a << " " << b << endl;
 }
 
-int Prostopadloscian::objentosc()
+class Prostopadloscian
 {
-	return 0;
+private:
+    int a, b, h = 5;
+public:
+    Prostopadloscian(int, int);
+    int ObliczObjetosc();
+    int ObliczPole();
+};
+
+Prostopadloscian::Prostopadloscian(int pa, int pb)
+{
+    a = pa;
+    b = pb;
 }
 
-int Prostopadloscian::pole()
+int Prostopadloscian::ObliczPole()
 {
-	return 0;
+    int p;
+    p = (2 * a * b) + (2 * b * h) + (2 * a * h);
+    return p;
+}
+
+int Prostopadloscian::ObliczObjetosc()
+{
+    int o;
+    o = a * b * h;
+    return o;
+}
+
+int main()
+{
+    int a, b;
+    Prostokat p1;
+    p1.WyswietlDane();
+    p1.PobierzBoki(a, b);
+    Prostopadloscian pp1(a, b);
+    cout << "Objetosc: " << pp1.ObliczObjetosc() << endl 
+        << "Pole: " << pp1.ObliczPole() << endl;
 }
