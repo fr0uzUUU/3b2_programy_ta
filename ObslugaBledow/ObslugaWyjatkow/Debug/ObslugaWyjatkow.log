@@ -1,0 +1,4 @@
+﻿  ObslugaWyjatkow.cpp
+F:\GitHub_Michala\ObslugaBledow\ObslugaWyjatkow\ObslugaWyjatkow.cpp(7,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+F:\GitHub_Michala\ObslugaBledow\ObslugaWyjatkow\ObslugaWyjatkow.cpp(51,13): warning C4101: "ocena": lokalna zmienna, do której nie istnieje odwołanie
+  ObslugaWyjatkow.vcxproj -> F:\GitHub_Michala\ObslugaBledow\Debug\ObslugaWyjatkow.exe
