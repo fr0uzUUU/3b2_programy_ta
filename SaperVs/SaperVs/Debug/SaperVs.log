@@ -1,0 +1,4 @@
+﻿  SaperVs.cpp
+F:\GitHub_Michala\SaperVs\SaperVs\SaperVs.cpp(40,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+F:\GitHub_Michala\SaperVs\SaperVs\SaperVs.cpp(56,34): warning C4551: wywołaniu funkcji brakuje listy argumentów
+  SaperVs.vcxproj -> F:\GitHub_Michala\SaperVs\Debug\SaperVs.exe
