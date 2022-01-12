@@ -1,0 +1,13 @@
+﻿  ObslugaWyjatkow3.cpp
+F:\GitHub_Michala\ObslugaBledow\ObslugaWyjatkow3\ObslugaWyjatkow3.cpp(35,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+F:\GitHub_Michala\ObslugaBledow\ObslugaWyjatkow3\ObslugaWyjatkow3.cpp(53,10): error C2259: „Format”: nie można utworzyć wystąpienia klasy abstrakcyjnej
+F:\GitHub_Michala\ObslugaBledow\ObslugaWyjatkow3\ObslugaWyjatkow3.cpp(12): message : zobacz deklarację „Format”
+F:\GitHub_Michala\ObslugaBledow\ObslugaWyjatkow3\ObslugaWyjatkow3.cpp(53,10): message : z powodu następujących składowych:
+F:\GitHub_Michala\ObslugaBledow\ObslugaWyjatkow3\ObslugaWyjatkow3.cpp(53,10): message : "std::string Wyjatek::komuinikat(void)": jest abstrakcyjna
+F:\GitHub_Michala\ObslugaBledow\ObslugaWyjatkow3\ObslugaWyjatkow3.cpp(9): message : zobacz deklarację „Wyjatek::komuinikat”
+F:\GitHub_Michala\ObslugaBledow\ObslugaWyjatkow3\ObslugaWyjatkow3.cpp(57,10): error C2259: „Zakres”: nie można utworzyć wystąpienia klasy abstrakcyjnej
+F:\GitHub_Michala\ObslugaBledow\ObslugaWyjatkow3\ObslugaWyjatkow3.cpp(23): message : zobacz deklarację „Zakres”
+F:\GitHub_Michala\ObslugaBledow\ObslugaWyjatkow3\ObslugaWyjatkow3.cpp(57,10): message : z powodu następujących składowych:
+F:\GitHub_Michala\ObslugaBledow\ObslugaWyjatkow3\ObslugaWyjatkow3.cpp(57,10): message : "std::string Wyjatek::komuinikat(void)": jest abstrakcyjna
+F:\GitHub_Michala\ObslugaBledow\ObslugaWyjatkow3\ObslugaWyjatkow3.cpp(9): message : zobacz deklarację „Wyjatek::komuinikat”
+F:\GitHub_Michala\ObslugaBledow\ObslugaWyjatkow3\ObslugaWyjatkow3.cpp(49): error C2317: blok "try", począwszy od linii '49' nie ma obsługi catch
