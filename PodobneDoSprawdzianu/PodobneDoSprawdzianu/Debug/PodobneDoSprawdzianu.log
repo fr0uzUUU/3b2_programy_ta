@@ -1,0 +1,3 @@
+﻿  PodobneDoSprawdzianu.cpp
+F:\GitHub_Michala\PodobneDoSprawdzianu\PodobneDoSprawdzianu\PodobneDoSprawdzianu.cpp(70,17): error C2660: "Osoba::Wyswietl": funkcja nie przyjmuje 0 argumentów
+F:\GitHub_Michala\PodobneDoSprawdzianu\PodobneDoSprawdzianu\PodobneDoSprawdzianu.cpp(46,7): message : zobacz deklarację „Osoba::Wyswietl”
