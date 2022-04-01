@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sudoku</title>
+</head>
+<body>
+    <script>
+        function create_empty_sudoku()
+{
+   var sudoku = new Array(9);
+
+   for (i=0; i<=8; i++)
+   {
+        sudoku[i] = new Array(9);
+   }
+
+   for (i=0; i<=8; i++)
+   {
+        for (j=0; j<=8; j++)
+        {
+            sudoku[i][j] = "0";
+        }
+   }
+
+   return sudoku;
+
+}
+function draw_num()
+{
+          var tmp_num = Math.round((9 - 1) * Math.random()) + 1;
+          return tmp_num;
+}
+function draw_and_check(sudoku, i, k)
+         {
+          var tmp_num = draw_num();
+          var error = 'false';
+          
+          // sprawdzanie czy element sie nie powtarza
+          for (j=0; j<=8; j++)   // sprawdzanie wiersza
+          {
+              if (tmp_num == sudoku[i][j]) error = 'true';
+          }
+          for (j=0; j<=8; j++)   // sprawdzenie bloku
+          {
+              if (tmp_num == sudoku[j][i]) error = 'true';
+          }
+          // sprawdzanie kostek
+          if ((k<=2) && (i<=2)) // element w LN narozniku
+          {
+              for(m=0;m<=3;m++)
+              {
+                  for(n=0;n<=3;n++)
+                  {
+                      if (sudoku[m][n] == tmp_num) error = 'true';
+                  }
+              }
+          }
+          if ((k<=2) && (i>=3 && i<=5)) // element w LM narozniku
+          {
+              for(m=3;m<=5;m++)
+              {
+                  for(n=0;n<=3;n++)
+                  {
+                      if (sudoku[m][n] == tmp_num) error = 'true';
+                  }
+              } 
+          }
+          if ((k<=2) && (i>=6 && i<=9)) // element w LS narozniku
+          {
+              for(m=6;m<=9;m++)
+              {
+                  for(n=0;n<=3;n++)
+                  {
+                      if (sudoku[m][n] == tmp_num) error = 'true';
+                  }
+              }
+          }
+          if ((k>=3 && k<=5) && (i<=2)) // element w MN narozniku
+          {
+              for(m=0;m<=3;m++)
+              {
+                  for(n=3;n<=5;n++)
+                  {
+                      if (sudoku[m][n] == tmp_num) error = 'true';
+                  }
+              }
+          }
+          if ((k>=3 && k<=5) && (i>=3 && i<=5)) // element w MM narozniku
+          {
+              for(m=3;m<=5;m++)
+              {
+                  for(n=3;n<=5;n++)
+                  {
+                      if (sudoku[m][n] == tmp_num) error = 'true';
+                  }
+              }
+          }
+          if ((k>=3 && k<=5) && (i>=6 && i<=9)) // element w MS narozniku
+          {
+              for(m=5;m<=9;m++)
+              {
+                  for(n=3;n<=5;n++)
+                  {
+                      if (sudoku[m][n] == tmp_num) error = 'true';
+                  }
+              }
+          }
+          if ((k>=6 && k<=9) && (i<=2)) // element w RN narozniku
+          {
+              for(m=0;m<=3;m++)
+              {
+                  for(n=6;n<=9;n++)
+                  {
+                      if (sudoku[m][n] == tmp_num) error = 'true';
+                  }
+              }
+          }
+          if ((k>=6 && k<=9) && (i>=3 && i<=5)) // element w RM narozniku
+          {
+              for(m=3;m<=5;m++)
+              {
+                  for(n=6;n<=9;n++)
+                  {
+                      if (sudoku[m][n] == tmp_num) error = 'true';
+                  }
+              }
+          }
+          if ((k>=6 && k<=9) && (i>=6 && i<=9)) // element w RS narozniku
+          {
+              for(m=3;m<=5;m++)
+              {
+                  for(n=6;n<=9;n++)
+                  {
+                      if (sudoku[m][n] == tmp_num) error = 'true';
+                  }
+              }
+          }
+          
+          // sprawdzenie czy mozna zapisac zmienną
+          if (error == 'true')
+          {
+              draw_and_check();
+          }
+          else return tmp_num;
+          
+}
+function create_sudoku (empty_sudoku, hard_level)
+{
+
+      /* argument to tablica sudoku 2D 9 x 9
+
+       Mechanizm losowania:
+        1 - losuje losow ilo?apelnianych miejsc dla wierszy wszystkich ( przedzial: level +/- 1)
+         - mamy ile liczb bedzie w kazdym wierszu wiec losowanie wartoci:
+        2 - losuje liczby od 1 do 9 i wrzuca je do losowych miejsc w wierszu konkretnym - sprawdzenie czy
+        sie nie powtarza w wierszu, kolumnie i kwardacie 3x3
+        3 - zwrcenie wylosowanej tablicy
+        no to jedziemy... :]
+       */
+       var level = hard_level;
+       var sudoku = empty_sudoku;
+
+       // mechanizm losowania ilosci wpisow w wierszu
+       var num_per_rows;
+       switch(level)
+       {
+          case 1:    // easy level
+          num_per_rows = 4;
+          break;
+          
+          case 2:    // normal level
+          num_per_rows = 3;
+          break;
+          
+          case 3:    // hard level
+          num_per_rows = 2;
+          break;
+       }
+
+       var num_per_rows_minus = num_per_rows - 1;
+       var num_per_rows_plus = num_per_rows + 1;
+       var num_per_rows_array = new Array(9);
+       // wypelnianie tablicy num_per_rows_array[] wartosciami z ilosci wpisow w poszczegolnych wierszach
+       for (i=0; i<=8; i++)
+       {
+           // losuje liczbe z przedzialu level +/- 1
+           var j = Math.round((num_per_rows_plus - num_per_rows_minus) * Math.random()) + num_per_rows_minus;
+           num_per_rows_array[i] = j;
+       }
+       // mamy juz tablice num_per_rows_array z wartosciami - ile trzeba wstawic wartosci do poszczegolnych wierszy
+
+      // tworzenie wypelnionego sudoku
+      
+      for (i=0; i<=8; i++)   // wchodzimy do wiersza
+      {
+        
+        for (k=0; k<=8; k++)  // wchodzimy do kolumny
+        {
+         
+         sudoku[i][k] = draw_and_check(sudoku, i, k);
+          
+        }
+      
+      }
+
+}
+
+function display_sudoku(sudoku)
+{
+
+    for (i=0; i<=8; i++)
+    {
+        for (j=0; j<=8; j++)
+        {
+            // colorize box borders
+            var box_class_name;
+            if ((i==2 || i==5) && (j==2 || j==5)) box_class_name = 'box_bold_border_right_and_bottom';
+            else if ((i==2 || i==5) && (j!=2 || j!=5)) box_class_name = 'box_bold_border_bottom';
+            else if ((i!=2 || i!=5) && (j==2 || j==5)) box_class_name = 'box_bold_border_right';
+            else box_class_name = 'box_normal';
+
+            // display sudoku array
+
+            var box = document.createElement('input');
+            box.type = 'text';
+            box.className = box_class_name;
+            box.value = sudoku[i][j];
+
+            var form = document.getElementById('form');
+            form.appendChild(box);
+
+        }
+        document.write("<br />");
+     }
+}
+
+    </script>
+    
+    var empty_sudoku = create_empty_sudoku();
+    var sudoku = create_sudoku(empty_sudoku, 2);
+
+
+    display_sudoku(sudoku);
+
+</body>
+</html>

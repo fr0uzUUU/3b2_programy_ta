@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tablica dwuwymiarowa</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <p id="ekranik"></p>
+    <script>
+        //deklaracja zmiennych
+        var iloscKolumn = 9;
+        var iloscWierszy = 9;
+        var napis = '';
+        var tablica = [];
+        //deklaracja drugiego wymiaru tablicy
+        for (var i = 0; i < iloscWierszy; i++) {
+            tablica[i] = [];
+        }
+        //wypełnianie tablicy wartościami
+        for (var i = 0; i < iloscWierszy; i++) {
+            for (var j = 0; j < iloscKolumn; j++) {
+                tablica[i][j] = i + ', ' + j;
+            }
+        }
+        //odczytywanie tablicy i generowanie napisu
+        for (var i = 0; i < iloscWierszy; i++) {
+            for (var j = 0; j < iloscKolumn; j++) {
+                napis += tablica[i][j] + " || ";
+            }
+            napis += '<br>';
+        }
+        //wyświetlenie napisu na stronie
+        document.getElementById("ekranik").innerHTML = napis;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+body {
+    font-family: Arial;
+}
+
+.import {
+    padding-bottom: 0.3em;
+}
+
+    
+
+.sudoku {
+    border: 5px   black;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    
+    
+
+    #main {
+        text-align: center;
+        width: 80%;
+        height:700px;
+        background-color: #ccffff;
+        outline-style: groove; 
+        padding-top: 25px;
+        border-radius: 20px;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    
+
+    .blok {
+        width: 50px;
+        height: 50px;
+        border: 1px solid black;
+        text-align: center;
+        font-family: Arial;
+        font-size: xx-large;
+    }
+    .blok:hover {
+        background-color: gray;
+    }
+    #plansza {
+        width: 520px;
+        height: 480px;
+        display: inline-block;
+    }
+
+    .przycisk {
+        border: 1px solid black;
+        width: 100px;
+        height: 50px;
+        font-size: large;
+        font-family: Arial;
+    }
+    .przycisk:hover {
+        background-color: greenyellow;
+    }
+    .przycisk:disabled {
+        background-color: gray;
+    }
